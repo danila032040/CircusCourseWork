@@ -4,13 +4,13 @@ namespace CircusDataAccessLibrary.Data
 {
     public sealed class Role : BaseEntity<int>
     {
-        public string Name { get; set; }
-
         public Role(int id,
                     string name) : base(id)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
         }
+
+        public string Name { get; set; }
 
         private bool Equals(Role other)
         {
@@ -22,7 +22,7 @@ namespace CircusDataAccessLibrary.Data
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == this.GetType() && Equals((Role) obj);
+            return obj.GetType() == GetType() && Equals((Role) obj);
         }
 
         public override int GetHashCode()

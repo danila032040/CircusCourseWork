@@ -2,8 +2,7 @@
 
 namespace CircusDataAccessLibrary.Repositories.Interfaces
 {
-    public interface IRoleRepository: IRepository<Role, int>
+    public interface IRoleRepository : IRepository<Role, int>
     {
-        
     }
 }

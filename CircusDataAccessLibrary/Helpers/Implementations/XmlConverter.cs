@@ -15,11 +15,19 @@ namespace CircusDataAccessLibrary.Helpers.Implementations
             return sw.ToString();
         }
 
-        public T ConvertFromXml<T>(string xml)
+        public T? ConvertFromXml<T>(string xml)
         {
-            var xmlSerializer = new XmlSerializer(typeof(T));
-            using var sw = new StringReader(xml);
-            return  (T?) xmlSerializer.Deserialize(sw) ?? throw new ArgumentException($"{nameof(xml)} isn`t a Xml format string.");
+            try
+            {
+                var xmlSerializer = new XmlSerializer(typeof(T));
+                using var sw = new StringReader(xml);
+                return (T?) xmlSerializer.Deserialize(sw) ??
+                       throw new ArgumentException($"{nameof(xml)} isn`t a Xml format string.");
+            }
+            catch
+            {
+                return default;
+            }
         }
     }
 }

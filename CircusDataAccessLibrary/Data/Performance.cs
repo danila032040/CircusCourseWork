@@ -4,12 +4,15 @@ namespace CircusDataAccessLibrary.Data
 {
     public class Performance : BaseEntity<int>
     {
-        public string Name { get; set;  }
-        public DateTime ShowDate { get; set; }
-        public string Slogan { get; set; }
-
+        public Performance()
+        {
+            Name = string.Empty;
+            Slogan = string.Empty;
+            ShowDate = DateTime.Now;
+        }
+        
         public Performance(int id,
-                           string name,  
+                           string name,
                            string slogan,
                            DateTime showDate) : base(id)
         {
@@ -17,6 +20,10 @@ namespace CircusDataAccessLibrary.Data
             Slogan = slogan ?? throw new ArgumentNullException(nameof(slogan));
             ShowDate = showDate;
         }
+
+        public string Name { get; set; }
+        public DateTime ShowDate { get; set; }
+        public string Slogan { get; set; }
 
         private bool Equals(Performance other)
         {
@@ -30,7 +37,7 @@ namespace CircusDataAccessLibrary.Data
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == this.GetType() && Equals((Performance) obj);
+            return obj.GetType() == GetType() && Equals((Performance) obj);
         }
 
         public override int GetHashCode()

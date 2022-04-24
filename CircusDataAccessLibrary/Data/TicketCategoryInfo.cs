@@ -4,19 +4,19 @@ namespace CircusDataAccessLibrary.Data
 {
     public sealed class TicketCategoryInfo : BaseEntity<int>
     {
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public int Count { get; set; }
-
         public TicketCategoryInfo(int id,
-                                  string name, 
-                                  decimal price, 
+                                  string name,
+                                  decimal price,
                                   int count) : base(id)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
             Price = price;
             Count = count;
         }
+
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public int Count { get; set; }
 
         private bool Equals(TicketCategoryInfo other)
         {
@@ -30,7 +30,7 @@ namespace CircusDataAccessLibrary.Data
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == this.GetType() && Equals((TicketCategoryInfo) obj);
+            return obj.GetType() == GetType() && Equals((TicketCategoryInfo) obj);
         }
 
         public override int GetHashCode()

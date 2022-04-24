@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CircusDataAccessLibrary.Data;
 
 namespace CircusDataAccessLibrary.Repositories.Interfaces
 {
-    public interface IRepository<TEntity, in TId>
+    public interface IRepository<TEntity, in TId> : IDisposable
         where TId : struct
         where TEntity : BaseEntity<TId>
     {

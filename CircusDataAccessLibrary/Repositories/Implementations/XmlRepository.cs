@@ -8,14 +8,14 @@ using CircusDataAccessLibrary.Repositories.Interfaces;
 
 namespace CircusDataAccessLibrary.Repositories.Implementations
 {
-    public abstract class XmlRepository<TEntity, TId> : IRepository<TEntity, TId>
+    public abstract class XmlRepository<TEntity, TId> : IRepository<TEntity, TId>, IDisposable
         where TId : struct, IComparable<TId>
         where TEntity : BaseEntity<TId>
     {
         private readonly string _filePath;
+        private readonly IIdGenerator<TId> _idGenerator;
 
         private readonly IXmlConverter _xmlConverter;
-        private readonly IIdGenerator<TId> _idGenerator;
 
         protected XmlRepository(string filePath,
                                 IXmlConverter xmlConverter,
@@ -48,7 +48,9 @@ namespace CircusDataAccessLibrary.Repositories.Implementations
 
         public List<TEntity> Read()
         {
-            return _xmlConverter.ConvertFromXml<List<TEntity>>(File.ReadAllText(_filePath));
+            var res = _xmlConverter.ConvertFromXml<List<TEntity>>(File.ReadAllText(_filePath));
+            res ??= new List<TEntity>();
+            return res;
         }
 
         public void Update(TEntity entity)
@@ -77,6 +79,10 @@ namespace CircusDataAccessLibrary.Repositories.Implementations
             entities.RemoveAt(entityToDeleteIndex);
 
             File.WriteAllText(_filePath, _xmlConverter.ConvertToXml(entities));
+        }
+
+        public void Dispose()
+        {
         }
     }
 }

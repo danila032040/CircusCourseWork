@@ -6,16 +6,17 @@ namespace CircusDataAccessLibrary.Data
 {
     public sealed class Circus : BaseEntity<int>
     {
-        public string Name { get; set; }
-        public List<int> TicketCategoryInfoIds { get; }
-
         public Circus(int id,
                       string name,
                       List<int> ticketCategoryInfoIds) : base(id)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
-            TicketCategoryInfoIds = ticketCategoryInfoIds ?? throw new ArgumentNullException(nameof(ticketCategoryInfoIds));
+            TicketCategoryInfoIds =
+                ticketCategoryInfoIds ?? throw new ArgumentNullException(nameof(ticketCategoryInfoIds));
         }
+
+        public string Name { get; set; }
+        public List<int> TicketCategoryInfoIds { get; }
 
         private bool Equals(Circus other)
         {
@@ -28,7 +29,7 @@ namespace CircusDataAccessLibrary.Data
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == this.GetType() && Equals((Circus) obj);
+            return obj.GetType() == GetType() && Equals((Circus) obj);
         }
 
         public override int GetHashCode()

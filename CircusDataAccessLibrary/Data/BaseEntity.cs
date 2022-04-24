@@ -1,14 +1,18 @@
 ﻿namespace CircusDataAccessLibrary.Data
 {
-    public abstract class BaseEntity<T> 
+    public abstract class BaseEntity<T>
         where T : struct
     {
-        public T Id { get; set; }
-
+        protected BaseEntity()
+        {
+            
+        }
         protected BaseEntity(T id)
         {
             Id = id;
         }
+
+        public T Id { get; set; }
 
         protected bool Equals(BaseEntity<T> other)
         {
@@ -19,7 +23,7 @@
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == this.GetType() && Equals((BaseEntity<T>) obj);
+            return obj.GetType() == GetType() && Equals((BaseEntity<T>) obj);
         }
 
         public override int GetHashCode()

@@ -2,8 +2,7 @@
 
 namespace CircusDataAccessLibrary.Repositories.Interfaces
 {
-    public interface ITicketCategoryInfoRepository: IRepository<TicketCategoryInfo, int>
+    public interface ITicketCategoryInfoRepository : IRepository<TicketCategoryInfo, int>
     {
-        
     }
 }
