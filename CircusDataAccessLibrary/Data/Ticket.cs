@@ -4,22 +4,25 @@ namespace CircusDataAccessLibrary.Data
 {
     public sealed class Ticket : BaseEntity<int>
     {
-        public Ticket(int id, int performanceId, int userId, int ticketCategoryInfoId) : base(id)
+        public Ticket()
+        {
+        }
+        public Ticket(int id, int performanceId, int? customerUserId, int ticketCategoryInfoId) : base(id)
         {
             PerformanceId = performanceId;
-            UserId = userId;
+            CustomerUserId = customerUserId;
             TicketCategoryInfoId = ticketCategoryInfoId;
         }
 
         public int PerformanceId { get; set; }
-        public int UserId { get; set; }
+        public int? CustomerUserId { get; set; }
         public int TicketCategoryInfoId { get; set; }
 
         private bool Equals(Ticket other)
         {
             return base.Equals(other) &&
                    PerformanceId == other.PerformanceId &&
-                   UserId == other.UserId &&
+                   CustomerUserId == other.CustomerUserId &&
                    TicketCategoryInfoId == other.TicketCategoryInfoId;
         }
 
@@ -32,7 +35,7 @@ namespace CircusDataAccessLibrary.Data
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(base.GetHashCode(), PerformanceId, UserId, TicketCategoryInfoId);
+            return HashCode.Combine(base.GetHashCode(), PerformanceId, CustomerUserId, TicketCategoryInfoId);
         }
     }
 }
