@@ -8,7 +8,7 @@ using CircusDataAccessLibrary.Repositories.Interfaces;
 
 namespace CircusDataAccessLibrary.Repositories.Implementations
 {
-    public abstract class XmlRepository<TEntity, TId> : IRepository<TEntity, TId>, IDisposable
+    public abstract class XmlRepository<TEntity, TId> : IRepository<TEntity, TId>
         where TId : struct, IComparable<TId>
         where TEntity : BaseEntity<TId>
     {
