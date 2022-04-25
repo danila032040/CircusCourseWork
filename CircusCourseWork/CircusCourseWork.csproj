@@ -8,7 +8,20 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="background.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Resources\Images" />
       <Folder Include="UserControls" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CircusDataAccessLibrary\CircusDataAccessLibrary.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="background.png" />
     </ItemGroup>
 
 </Project>
