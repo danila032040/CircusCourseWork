@@ -4,10 +4,8 @@ namespace CircusDataAccessLibrary.Data
 {
     public sealed class Role : BaseEntity<int>
     {
-        public Role(int id,
-                    string name) : base(id)
+        public Role()
         {
-            Name = name ?? throw new ArgumentNullException(nameof(name));
         }
 
         public string Name { get; set; }

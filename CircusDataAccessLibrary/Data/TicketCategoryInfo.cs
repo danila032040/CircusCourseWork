@@ -4,14 +4,9 @@ namespace CircusDataAccessLibrary.Data
 {
     public sealed class TicketCategoryInfo : BaseEntity<int>
     {
-        public TicketCategoryInfo(int id,
-                                  string name,
-                                  decimal price,
-                                  int count) : base(id)
+        public TicketCategoryInfo()
         {
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-            Price = price;
-            Count = count;
+            Name = string.Empty;
         }
 
         public string Name { get; set; }

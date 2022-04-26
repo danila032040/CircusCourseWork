@@ -6,17 +6,13 @@ namespace CircusDataAccessLibrary.Data
 {
     public sealed class Circus : BaseEntity<int>
     {
-        public Circus(int id,
-                      string name,
-                      List<int> ticketCategoryInfoIds) : base(id)
+        public Circus()
         {
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-            TicketCategoryInfoIds =
-                ticketCategoryInfoIds ?? throw new ArgumentNullException(nameof(ticketCategoryInfoIds));
+            
         }
 
         public string Name { get; set; }
-        public List<int> TicketCategoryInfoIds { get; }
+        public List<int> TicketCategoryInfoIds { get; set; }
 
         private bool Equals(Circus other)
         {

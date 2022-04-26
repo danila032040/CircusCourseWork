@@ -7,12 +7,6 @@ namespace CircusDataAccessLibrary.Data
         public Ticket()
         {
         }
-        public Ticket(int id, int performanceId, int? customerUserId, int ticketCategoryInfoId) : base(id)
-        {
-            PerformanceId = performanceId;
-            CustomerUserId = customerUserId;
-            TicketCategoryInfoId = ticketCategoryInfoId;
-        }
 
         public int PerformanceId { get; set; }
         public int? CustomerUserId { get; set; }

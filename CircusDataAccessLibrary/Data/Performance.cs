@@ -10,16 +10,6 @@ namespace CircusDataAccessLibrary.Data
             Slogan = string.Empty;
             ShowDate = DateTime.Now;
         }
-        
-        public Performance(int id,
-                           string name,
-                           string slogan,
-                           DateTime showDate) : base(id)
-        {
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-            Slogan = slogan ?? throw new ArgumentNullException(nameof(slogan));
-            ShowDate = showDate;
-        }
 
         public string Name { get; set; }
         public DateTime ShowDate { get; set; }

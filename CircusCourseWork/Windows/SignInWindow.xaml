@@ -14,7 +14,7 @@
     <Grid>
         <TextBlock HorizontalAlignment="Center"
                    VerticalAlignment="Top">
-            <Hyperlink>Войти как гость</Hyperlink>
+            <Hyperlink Click="HyperlinkSignInAsGuest_OnClick">Войти как гость</Hyperlink>
         </TextBlock>
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center"
@@ -25,11 +25,11 @@
             <Label Content="Пароль" />
             <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Button Margin="0 25 0 0" Content="Войти" />
+            <Button Margin="0 25 0 0" Content="Войти" Click="ButtonSignIn_OnClick"/>
         </StackPanel>
         <TextBlock HorizontalAlignment="Center"
                    VerticalAlignment="Bottom">
-            <Hyperlink>Зарегестрироваться</Hyperlink>
+            <Hyperlink Click="HyperlinkRegister_OnClick">Зарегестрироваться</Hyperlink>
         </TextBlock>
     </Grid>
 </Window>

@@ -4,22 +4,15 @@ namespace CircusDataAccessLibrary.Data
 {
     public sealed class User : BaseEntity<int>
     {
-        public User(int id,
-                    string name,
-                    string login,
-                    string password,
-                    Role role) : base(id)
+        public User()
         {
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-            Login = login ?? throw new ArgumentNullException(nameof(login));
-            Password = password ?? throw new ArgumentNullException(nameof(password));
-            Role = role ?? throw new ArgumentNullException(nameof(role));
+            
         }
 
-        public string Name { get; }
-        public string Login { get; }
-        public string Password { get; }
-        public Role Role { get; }
+        public string Name { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public int RoleId { get; set; }
 
         private bool Equals(User other)
         {
@@ -27,7 +20,7 @@ namespace CircusDataAccessLibrary.Data
                    Name == other.Name &&
                    Login == other.Login &&
                    Password == other.Password &&
-                   Role.Equals(other.Role);
+                   RoleId == other.RoleId;
         }
 
         public override bool Equals(object? obj)
@@ -39,7 +32,7 @@ namespace CircusDataAccessLibrary.Data
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(base.GetHashCode(), Name, Login, Password, Role);
+            return HashCode.Combine(base.GetHashCode(), Name, Login, Password, RoleId);
         }
     }
 }

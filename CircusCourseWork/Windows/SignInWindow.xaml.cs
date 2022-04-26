@@ -10,10 +10,25 @@ namespace CircusCourseWork.Windows
     {
         public SignInWindow()
         {
+            
             DataContext = new LoginViewModel();
             
             InitializeComponent();
 
+        }
+
+        private void ButtonSignIn_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void HyperlinkSignInAsGuest_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void HyperlinkRegister_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
