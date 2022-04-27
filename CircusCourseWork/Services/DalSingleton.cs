@@ -22,7 +22,7 @@ namespace CircusCourseWork.Services
         public ITicketRepository TicketRepository { get; private set; }
         public IUserRepository UserRepository { get; private set; }
 
-        public DalSingleton()
+        private DalSingleton()
         {
             string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "Repositories");
 
@@ -34,6 +34,8 @@ namespace CircusCourseWork.Services
             string ticketRepFileName = Path.Combine(directoryPath, $"{nameof(TicketRepository)}.xml");
             string userRepFileName = Path.Combine(directoryPath, $"{nameof(UserRepository)}.xml");
 
+            Directory.CreateDirectory(directoryPath);
+            
             if (!File.Exists(authRepFileName)) File.Create(authRepFileName).Dispose();
             if (!File.Exists(circusRepFileName)) File.Create(circusRepFileName).Dispose();
             if (!File.Exists(performanceRepFileName)) File.Create(performanceRepFileName).Dispose();

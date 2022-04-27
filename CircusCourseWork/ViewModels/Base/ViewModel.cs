@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace CircusCourseWork.ViewModels
+namespace CircusCourseWork.ViewModels.Base
 {
     public abstract class ViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {

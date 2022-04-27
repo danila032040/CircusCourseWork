@@ -1,0 +1,20 @@
+﻿<Window x:Class="CircusCourseWork.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:CircusCourseWork.Windows"
+        xmlns:userControls="clr-namespace:CircusCourseWork.UserControls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="900" Width="1400"
+        Style="{StaticResource DefaultWindowStyle}"
+        WindowStartupLocation="CenterScreen">
+    <DockPanel LastChildFill="True">
+            <Button DockPanel.Dock="Top" HorizontalAlignment="Right" Width="200" Content="Выйти" Margin="5" Click="ButtonSignOut_OnClick"/>
+        <Grid>
+            <userControls:RegisteredUserControl x:Name="RegisteredUserControl" />
+            <userControls:AdminControl x:Name="AdminControl" />
+            <userControls:GuestControl x:Name="GuestControl" />
+        </Grid>
+    </DockPanel>
+</Window>

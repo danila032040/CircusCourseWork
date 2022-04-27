@@ -12,7 +12,7 @@ namespace CircusDataAccessLibrary.Data
         public string Name { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public int RoleId { get; set; }
+        public int? RoleId { get; set; }
 
         private bool Equals(User other)
         {

@@ -1,4 +1,4 @@
-﻿namespace CircusCourseWork.ViewModels
+﻿namespace CircusCourseWork.ViewModels.Base
 {
     public class Error
     {
