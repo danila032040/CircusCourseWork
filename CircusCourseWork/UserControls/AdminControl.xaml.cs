@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using CircusCourseWork.Services;
@@ -7,7 +9,7 @@ using CircusDataAccessLibrary.Data;
 
 namespace CircusCourseWork.UserControls
 {
-    public partial class AdminControl : UserControl
+    public partial class AdminControl
     {
         private readonly AdminControlViewModel _viewModel = new();
 
@@ -35,7 +37,11 @@ namespace CircusCourseWork.UserControls
 
         private void ButtonAddPerformance_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            DalSingleton.Instance.PerformanceRepository.Create(new Performance
+                                                               {
+                                                                   ShowDate = DateTime.Now
+                                                               });
+            RefreshPerformanceStackPanel();
         }
 
         private void RefreshPerformanceStackPanel()
@@ -49,13 +55,13 @@ namespace CircusCourseWork.UserControls
                                  Content = "X",
                                  DataContext = performance
                              };
-                delete.Click += (s, e) =>
+                delete.Click += (_, _) =>
                                 {
                                     DalSingleton.Instance.PerformanceRepository.Delete(performance.Id);
                                     RefreshPerformanceStackPanel();
                                 };
 
-                sp.Children.Add(new EditablePerformance(performance));
+                sp.Children.Add(new EditablePerformanceControl(performance));
                 sp.Children.Add(delete);
                 PerformanceStackPanel.Children.Add(sp);
             }
@@ -63,10 +69,20 @@ namespace CircusCourseWork.UserControls
 
         private void RefreshUsersStackPanel()
         {
+            UserStackPanel.Children.Clear();
+            foreach (EditableUserControl? epc in DalSingleton.Instance.UserRepository.Read().Select(user => new EditableUserControl(user)))
+            {
+                epc.Banned += RefreshUsersStackPanel;
+                UserStackPanel.Children.Add(epc);
+            }
         }
 
         private void RefreshReportsStackPanel()
         {
+            ReportsStackPanel.Children.Clear();
+            foreach (ReportsControl? rc in DalSingleton.Instance.PerformanceRepository.Read()
+                                                       .Select(performance => new ReportsControl(performance)))
+                ReportsStackPanel.Children.Add(rc);
         }
 
         private void PerformanceTabItem_OnSelected(object sender, RoutedEventArgs e)
