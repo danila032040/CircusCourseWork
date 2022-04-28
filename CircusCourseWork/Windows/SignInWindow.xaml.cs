@@ -10,17 +10,18 @@ namespace CircusCourseWork.Windows
     public partial class SignInWindow
     {
         private readonly LoginViewModel _viewModel = new();
+
         public SignInWindow()
         {
             DataContext = _viewModel;
             InitializeComponent();
 
             if (DalSingleton.Instance.Auth.SignedInUser == null) return;
-            
+
             var window = new MainWindow();
             Application.Current.MainWindow = window;
             window.Show();
-            
+
             Close();
         }
 
@@ -30,7 +31,7 @@ namespace CircusCourseWork.Windows
             var window = new MainWindow();
             Application.Current.MainWindow = window;
             window.Show();
-            
+
             Close();
         }
 
@@ -40,13 +41,21 @@ namespace CircusCourseWork.Windows
             var window = new MainWindow();
             Application.Current.MainWindow = window;
             window.Show();
-            
+
             Close();
         }
 
         private void HyperlinkRegister_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            Window window = new RegisterWindow();
+            window.Owner = this;
+            if (window.ShowDialog() != true) return;
+            
+            window = new MainWindow();
+            Application.Current.MainWindow = window;
+            window.Show();
+
+            Close();
         }
     }
 }

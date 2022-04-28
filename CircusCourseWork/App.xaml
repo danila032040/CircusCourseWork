@@ -6,11 +6,21 @@
         <Style x:Key="DefaultWindowStyle" TargetType="Window" >
             <Setter Property="Background">
                 <Setter.Value>
-                    <ImageBrush ImageSource="/background.png"></ImageBrush>
+                    <ImageBrush ImageSource="/background.png" Stretch="UniformToFill"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="FontFamily" Value="Segoe UI"/>
             <Setter Property="FontSize" Value="22"/>
+        </Style>
+        <Style x:Key="DefaultDialogWindowStyle" TargetType="Window" >
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="/background.png" Stretch="UniformToFill"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="WindowStyle" Value="ToolWindow"/>
         </Style>
     </Application.Resources>
 </Application>

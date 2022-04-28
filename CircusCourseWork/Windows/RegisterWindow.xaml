@@ -4,9 +4,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:CircusCourseWork.Windows"
+        xmlns:viewModels="clr-namespace:CircusCourseWork.ViewModels"
         mc:Ignorable="d"
-        Title="RegisterWindow" Height="450" Width="800">
+        Title="Регистрация пользователя" 
+        Height="450" 
+        Width="400"
+        Style="{StaticResource DefaultDialogWindowStyle}"
+        WindowStartupLocation="CenterOwner"
+        d:DataContext="{d:DesignInstance viewModels:RegisterViewModel}">
     <Grid>
-        
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="300">
+            <Label Content="Имя пользователя" />
+            <TextBox Text="{Binding Path=UserName, UpdateSourceTrigger=PropertyChanged}" />
+            
+            <Label Content="Логин" />
+            <TextBox Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label Content="Пароль" />
+            <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Button Margin="0 25 0 0" Content="Войти" Click="ButtonRegister_OnClick"/>
+        </StackPanel>
     </Grid>
 </Window>

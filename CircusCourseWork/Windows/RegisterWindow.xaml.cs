@@ -1,4 +1,7 @@
-﻿using CircusCourseWork.ViewModels;
+﻿using System.Windows;
+using CircusCourseWork.Services;
+using CircusCourseWork.ViewModels;
+using CircusDataAccessLibrary.Data;
 
 namespace CircusCourseWork.Windows
 {
@@ -9,6 +12,19 @@ namespace CircusCourseWork.Windows
         {
             DataContext = _viewModel;
             InitializeComponent();
+        }
+
+        private void ButtonRegister_OnClick(object sender, RoutedEventArgs e)
+        {
+            DalSingleton.Instance.UserRepository.Create(new User
+                                                        {
+                                                            Name = _viewModel.UserName,
+                                                            Login = _viewModel.Login,
+                                                            Password = _viewModel.Password
+                                                        });
+            DalSingleton.Instance.Auth.SignIn(_viewModel.Login, _viewModel.Password);
+            DialogResult = true;
+            Close();
         }
     }
 }
