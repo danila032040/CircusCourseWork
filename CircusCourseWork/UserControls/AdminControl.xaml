@@ -3,12 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:CircusCourseWork.UserControls"
+             xmlns:viewModels="clr-namespace:CircusCourseWork.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Label>
-            Admin
-        </Label>
-    </Grid>
+             d:DataContext="{d:DesignInstance viewModels:AdminControlViewModel}">
+    <TabControl>
+        <TabItem Header="Представления" Selector.Selected="PerformanceTabItem_OnSelected">
+            <DockPanel LastChildFill="True">
+                <Button DockPanel.Dock="Top" Content="Добавить" Click="ButtonAddPerformance_OnClick"
+                        HorizontalAlignment="Center" />
+                <ScrollViewer>
+                    <StackPanel x:Name="PerformanceStackPanel" />
+                </ScrollViewer>
+            </DockPanel>
+        </TabItem>
+        <TabItem Header="Категории билетов">
+            <StackPanel>
+
+                <Label Content="{Binding TciName0}" />
+                <TextBox Text="{Binding TciPrice0, UpdateSourceTrigger=PropertyChanged}" />
+
+                <Label Content="{Binding TciName1, Mode=OneTime}" />
+                <TextBox Text="{Binding TciPrice1, UpdateSourceTrigger=PropertyChanged}" />
+
+                <Label Content="{Binding TciName2, Mode=OneTime}" />
+                <TextBox Text="{Binding TciPrice2, UpdateSourceTrigger=PropertyChanged}" />
+                <Button Click="ButtonSaveTci_OnClick" Content="Сохранять" />
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="Пользователи" Selector.Selected="UserTabItem_OnSelected">
+            <ScrollViewer>
+                <StackPanel x:Name="UserStackPanel" />
+            </ScrollViewer>
+        </TabItem>
+        <TabItem Header="Отчеты по продажам" Selector.Selected="ReportsTabItem_OnSelected">
+            <ScrollViewer>
+                <StackPanel x:Name="ReportsStackPanel" />
+            </ScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>
