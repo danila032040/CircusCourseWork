@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="CircusCourseWork.UserControls.PerformanceGuestControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:CircusCourseWork.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance viewModels:PerformanceUserControlViewModel}">
+    <Border Margin="25" BorderBrush="Black" BorderThickness="1" Background="Bisque">
+        <StackPanel>
+            <TextBlock TextAlignment="Center" Text="{Binding PerformanceName}" FontWeight="Bold"/>
+            <TextBlock TextAlignment="Center" Text="{Binding PerformanceShowDate}" FontStyle="Italic"/>
+            <TextBlock TextAlignment="Justify" Text="{Binding PerformanceSlogan}" />
+        </StackPanel>
+    </Border>
+</UserControl>

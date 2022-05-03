@@ -6,9 +6,15 @@
              xmlns:local="clr-namespace:CircusCourseWork.UserControls"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Label>
-            Registered
-        </Label>
-    </Grid>
+    <TabControl>
+        <TabControl.Background>
+            <SolidColorBrush Opacity="0" Color="Aqua"/>
+        </TabControl.Background>
+        <TabItem Header="Представления" Selector.Selected="PerformanceTabItem_OnSelected">
+            <StackPanel x:Name="PerformanceStackPanel"/>
+        </TabItem>
+        <TabItem Header="Купленные Билеты" Selector.Selected="TicketsTabItem_OnSelected">
+            <StackPanel x:Name="TicketsStackPanel"/>
+        </TabItem>
+    </TabControl>
 </UserControl>

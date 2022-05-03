@@ -5,6 +5,7 @@ namespace CircusDataAccessLibrary.Data
     public sealed class Ticket : BaseEntity<int>
     {
         public int PerformanceId { get; set; }
+        public int TicketCategoryInfoId { get; set; }
         public int? CustomerUserId { get; set; }
         public decimal Price { get; set; }
 
@@ -12,6 +13,7 @@ namespace CircusDataAccessLibrary.Data
         {
             return base.Equals(other) &&
                    PerformanceId == other.PerformanceId &&
+                   TicketCategoryInfoId == other.TicketCategoryInfoId &&
                    CustomerUserId == other.CustomerUserId &&
                    Price == other.Price;
         }
@@ -25,7 +27,7 @@ namespace CircusDataAccessLibrary.Data
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(base.GetHashCode(), PerformanceId, CustomerUserId, Price);
+            return HashCode.Combine(base.GetHashCode(), PerformanceId, TicketCategoryInfoId, CustomerUserId, Price);
         }
     }
 }

@@ -7,6 +7,9 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModels:AdminControlViewModel}">
     <TabControl>
+        <TabControl.Background>
+            <SolidColorBrush Opacity="0" Color="Aqua"/>
+        </TabControl.Background>
         <TabItem Header="Представления" Selector.Selected="PerformanceTabItem_OnSelected">
             <DockPanel LastChildFill="True">
                 <Button DockPanel.Dock="Top" Content="Добавить" Click="ButtonAddPerformance_OnClick"
@@ -27,7 +30,7 @@
 
                 <Label Content="{Binding TciName2, Mode=OneTime}" />
                 <TextBox Text="{Binding TciPrice2, UpdateSourceTrigger=PropertyChanged}" />
-                <Button Click="ButtonSaveTci_OnClick" Content="Сохранять" />
+                <Button Click="ButtonSaveTci_OnClick" Content="Сохранить" />
             </StackPanel>
         </TabItem>
         <TabItem Header="Пользователи" Selector.Selected="UserTabItem_OnSelected">

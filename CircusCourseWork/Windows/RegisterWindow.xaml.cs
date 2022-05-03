@@ -16,6 +16,11 @@ namespace CircusCourseWork.Windows
 
         private void ButtonRegister_OnClick(object sender, RoutedEventArgs e)
         {
+            if (_viewModel.HasErrors)
+            {
+                MessageBox.Show("Неверный логин или пароль!");
+                return;
+            }
             DalSingleton.Instance.UserRepository.Create(new User
                                                         {
                                                             Name = _viewModel.UserName,

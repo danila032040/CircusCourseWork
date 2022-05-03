@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using CircusCourseWork.Services;
 using CircusCourseWork.ViewModels;
 using CircusDataAccessLibrary.Data;
@@ -37,51 +35,50 @@ namespace CircusCourseWork.UserControls
 
         private void ButtonAddPerformance_OnClick(object sender, RoutedEventArgs e)
         {
-            DalSingleton.Instance.PerformanceRepository.Create(new Performance
-                                                               {
-                                                                   ShowDate = DateTime.Now
-                                                               });
+            var performance = new Performance();
+            DalSingleton.Instance.PerformanceRepository.Create(performance);
+            foreach (TicketCategoryInfo tci in DalSingleton.Instance.TicketCategoryInfoRepository.Read())
+            {
+                for (int i = 0; i < tci.Count; ++i)
+                    DalSingleton.Instance.TicketRepository.Create(new Ticket
+                    {
+                        PerformanceId = performance.Id,
+                        TicketCategoryInfoId = tci.Id,
+                        Price = tci.Price
+                    });
+            }
+
             RefreshPerformanceStackPanel();
         }
 
         private void RefreshPerformanceStackPanel()
         {
             PerformanceStackPanel.Children.Clear();
-            foreach (Performance performance in DalSingleton.Instance.PerformanceRepository.Read())
+            foreach (EditablePerformanceControl? epc in DalSingleton.Instance.PerformanceRepository.Read()
+                         .Select(p => new EditablePerformanceControl(p)))
             {
-                var sp = new StackPanel();
-                var delete = new Button
-                             {
-                                 Content = "X",
-                                 DataContext = performance
-                             };
-                delete.Click += (_, _) =>
-                                {
-                                    DalSingleton.Instance.PerformanceRepository.Delete(performance.Id);
-                                    RefreshPerformanceStackPanel();
-                                };
-
-                sp.Children.Add(new EditablePerformanceControl(performance));
-                sp.Children.Add(delete);
-                PerformanceStackPanel.Children.Add(sp);
+                epc.Delete += RefreshPerformanceStackPanel;
+                PerformanceStackPanel.Children.Add(epc);
             }
         }
 
         private void RefreshUsersStackPanel()
         {
             UserStackPanel.Children.Clear();
-            foreach (EditableUserControl? epc in DalSingleton.Instance.UserRepository.Read().Select(user => new EditableUserControl(user)))
+            Role adminRole = DalSingleton.Instance.RoleRepository.Read().First(r => r.Name == "Admin");
+            foreach (EditableUserControl? euc in DalSingleton.Instance.UserRepository.Read()
+                         .Where(user => user.RoleId != adminRole.Id).Select(user => new EditableUserControl(user)))
             {
-                epc.Banned += RefreshUsersStackPanel;
-                UserStackPanel.Children.Add(epc);
+                euc.Delete += RefreshUsersStackPanel;
+                UserStackPanel.Children.Add(euc);
             }
         }
 
         private void RefreshReportsStackPanel()
         {
             ReportsStackPanel.Children.Clear();
-            foreach (ReportsControl? rc in DalSingleton.Instance.PerformanceRepository.Read()
-                                                       .Select(performance => new ReportsControl(performance)))
+            foreach (ReportControl? rc in DalSingleton.Instance.PerformanceRepository.Read()
+                         .Select(performance => new ReportControl(performance)))
                 ReportsStackPanel.Children.Add(rc);
         }
 

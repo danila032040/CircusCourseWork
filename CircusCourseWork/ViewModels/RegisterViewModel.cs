@@ -1,4 +1,6 @@
-﻿using CircusCourseWork.ViewModels.Base;
+﻿using System.Linq;
+using CircusCourseWork.Services;
+using CircusCourseWork.ViewModels.Base;
 
 namespace CircusCourseWork.ViewModels
 {
@@ -14,7 +16,7 @@ namespace CircusCourseWork.ViewModels
             set
             {
                 _userName = value;
-                
+
                 ValidateUserName();
                 OnPropertyChanged();
                 OnErrorsChanged();
@@ -42,13 +44,12 @@ namespace CircusCourseWork.ViewModels
                 _password = value;
 
                 ValidatePassword();
-                
+
                 OnPropertyChanged();
                 OnErrorsChanged();
             }
         }
 
-        
 
         public RegisterViewModel()
         {
@@ -60,18 +61,23 @@ namespace CircusCourseWork.ViewModels
         private void ValidateUserName()
         {
             ClearErrors(nameof(UserName));
-            if (string.IsNullOrEmpty(UserName)) AddError(new Error($"{nameof(UserName)} can`t be empty!"), nameof(UserName));
+            if (string.IsNullOrEmpty(UserName))
+                AddError(new Error($"{nameof(UserName)} can`t be empty!"), nameof(UserName));
         }
+
         private void ValidateLogin()
         {
             ClearErrors(nameof(Login));
             if (string.IsNullOrEmpty(Login)) AddError(new Error($"{nameof(Login)} can`t be empty!"), nameof(Login));
+            if (DalSingleton.Instance.UserRepository.Read().Any(u => u.Login == Login))
+                AddError(new Error($"This {nameof(Login)} is already used."), nameof(Login));
         }
-        
+
         private void ValidatePassword()
         {
             ClearErrors(nameof(Password));
-            if (string.IsNullOrEmpty(Password)) AddError(new Error($"{nameof(Password)} can`t be empty!"), nameof(Password));
+            if (string.IsNullOrEmpty(Password))
+                AddError(new Error($"{nameof(Password)} can`t be empty!"), nameof(Password));
         }
     }
 }

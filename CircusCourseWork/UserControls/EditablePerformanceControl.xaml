@@ -6,9 +6,18 @@
              xmlns:local="clr-namespace:CircusCourseWork.UserControls"
              xmlns:viewModels="clr-namespace:CircusCourseWork.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
-             d:DataContext="{d:DesignInstance viewModels:EditablePerformanceViewModel}">
-    <Grid>
-        <Label Content="{Binding }"/>
-    </Grid>
+             d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance viewModels:EditablePerformanceControlViewModel}">
+    <Border Margin="25" BorderBrush="Black" BorderThickness="1" Padding="25" Background="Bisque">
+        <StackPanel>
+            <Label Content="Название" />
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="Слоган" />
+            <TextBox Text="{Binding Slogan, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="Слоган" />
+            <DatePicker SelectedDate="{Binding ShowDate, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content="Сохранить" Click="ButtonSave_OnClick" Margin="25  25 25 25 "/>
+            <Button Content="Удалить" Click="ButtonDelete_OnClick" Margin="25"/>
+        </StackPanel>
+    </Border>
 </UserControl>
