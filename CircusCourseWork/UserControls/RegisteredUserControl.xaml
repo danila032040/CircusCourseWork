@@ -3,18 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:CircusCourseWork.UserControls"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <TabControl>
         <TabControl.Background>
-            <SolidColorBrush Opacity="0" Color="Aqua"/>
+            <SolidColorBrush Opacity="0" Color="Aqua" />
         </TabControl.Background>
         <TabItem Header="Представления" Selector.Selected="PerformanceTabItem_OnSelected">
-            <StackPanel x:Name="PerformanceStackPanel"/>
+            <DockPanel LastChildFill="True">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="25">
+                    <Button x:Name="ButtonSearch"
+                            Click="ButtonSearch_OnClick"
+                            Content="Поиск"
+                            Margin="1" />
+                    <Button x:Name="ButtonRemoveSearch"
+                            Click="ButtonRemoveSearch_OnClick"
+                            Content="X"
+                            IsEnabled="False"
+                            Margin="1" />
+                </StackPanel>
+                <ScrollViewer>
+                    <StackPanel x:Name="PerformanceStackPanel" />
+                </ScrollViewer>
+            </DockPanel>
         </TabItem>
         <TabItem Header="Купленные Билеты" Selector.Selected="TicketsTabItem_OnSelected">
-            <StackPanel x:Name="TicketsStackPanel"/>
+            <ScrollViewer>
+                <StackPanel x:Name="TicketsStackPanel" />
+            </ScrollViewer>
         </TabItem>
     </TabControl>
 </UserControl>
