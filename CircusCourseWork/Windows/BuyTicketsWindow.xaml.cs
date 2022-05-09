@@ -10,6 +10,7 @@ namespace CircusCourseWork.Windows
     public partial class BuyTicketsWindow
     {
         private readonly BuyTicketsWindowViewModel _viewModel = new();
+
         public BuyTicketsWindow(Performance performance)
         {
             _viewModel.Performance = performance;
@@ -34,7 +35,7 @@ namespace CircusCourseWork.Windows
 
                 _viewModel.TciCount0--;
             }
-            
+
             foreach (Ticket ticket in grouping[1])
             {
                 if (ticket.CustomerUserId != null) continue;
@@ -44,7 +45,7 @@ namespace CircusCourseWork.Windows
 
                 _viewModel.TciCount1--;
             }
-            
+
             foreach (Ticket ticket in grouping[2])
             {
                 if (ticket.CustomerUserId != null) continue;
@@ -54,7 +55,7 @@ namespace CircusCourseWork.Windows
 
                 _viewModel.TciCount2--;
             }
-            
+
             Close();
         }
     }

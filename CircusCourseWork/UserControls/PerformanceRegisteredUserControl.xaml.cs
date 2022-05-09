@@ -18,6 +18,7 @@ namespace CircusCourseWork.UserControls
         private void ButtonBuy_OnClick(object sender, RoutedEventArgs e)
         {
             var window = new BuyTicketsWindow(_viewModel.Performance);
+            window.Owner = Application.Current.MainWindow;
             window.ShowDialog();
         }
     }

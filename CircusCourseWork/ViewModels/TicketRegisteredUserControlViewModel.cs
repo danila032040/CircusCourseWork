@@ -10,11 +10,11 @@ namespace CircusCourseWork.ViewModels
     {
         public Performance Performance { get; set; }
 
-        public int TciCount0 => TicketCategoriesIdsForBoughtTickets.ElementAtOrDefault(0)?.Count() ?? 0;
+        public int TciCount0 => TicketCategoriesIdsForBoughtTickets.ElementAtOrDefault(0)?.Count(t=>t.CustomerUserId == DalSingleton.Instance.Auth.SignedInUser?.Id) ?? 0;
 
-        public int TciCount1 => TicketCategoriesIdsForBoughtTickets.ElementAtOrDefault(1)?.Count() ?? 0;
+        public int TciCount1 => TicketCategoriesIdsForBoughtTickets.ElementAtOrDefault(1)?.Count(t=>t.CustomerUserId == DalSingleton.Instance.Auth.SignedInUser?.Id) ?? 0;
 
-        public int TciCount2 => TicketCategoriesIdsForBoughtTickets.ElementAtOrDefault(2)?.Count() ?? 0;
+        public int TciCount2 => TicketCategoriesIdsForBoughtTickets.ElementAtOrDefault(2)?.Count(t=>t.CustomerUserId == DalSingleton.Instance.Auth.SignedInUser?.Id) ?? 0;
 
         public decimal Price
         {
@@ -35,7 +35,7 @@ namespace CircusCourseWork.ViewModels
         
         private IEnumerable<IGrouping<int, Ticket>> TicketCategoriesIdsForBoughtTickets => DalSingleton.Instance
             .TicketRepository.Read()
-            .Where(t => t.PerformanceId == Performance.Id && t.CustomerUserId == DalSingleton.Instance.Auth.SignedInUser?.Id)
+            .Where(t => t.PerformanceId == Performance.Id)
             .GroupBy(t => t.TicketCategoryInfoId);
     }
 }

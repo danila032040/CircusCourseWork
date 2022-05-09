@@ -11,7 +11,8 @@
         Height="450" 
         Width="800" 
         d:DataContext="{d:DesignInstance viewModels:BuyTicketsWindowViewModel}"
-        Style="{StaticResource DefaultDialogWindowStyle}">
+        Style="{StaticResource DefaultDialogWindowStyle}"
+        WindowStartupLocation="CenterOwner">
     <StackPanel Margin="25">
         <Label Content="Количество билетов категории №1"/>
         <xctk:IntegerUpDown Value="{Binding TciCount0, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="{Binding TciMaxCount0}"/>
